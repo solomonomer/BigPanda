@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Big Panda Exercise</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css files -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+    <!-- AngularJS file brought through CDN-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+    <!-- AngularJS file brought localy -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/controllers.js"></script>  
+    <script src="js/md5/angular-md5.js"></script>  
+    
+</head>
+
+<body ng-app="myChat" ng-controller="MainController">
+    <div class="container" >
+        <!-- chat-form -->
+        <div class="chat-form">
+            <form class="chat-box">
+                <div class="chat-form-control flex1">
+                    <input type="text" placeholder="Email" ng-model="newcomment.email">
+                </div>
+                <div class="chat-form-control flex2">
+                    <input type="text" placeholder="Message" ng-model="newcomment.message" />
+                </div>
+                <div class="chat-form-control flex3">
+                    <button type="button" ng-click="addComment()">Submit</button>
+                </div>
+            </form>
+            <!-- end of chat-box -->
+        </div>
+        <!-- end of chat-form -->
+
+        <!-- comments-section -->
+        <div class="comments-section">
+            <!-- Filter Messages -->
+            <div class="chat-form-control flex1">
+                <input type="textarea" placeholder="Filter Messages" id="filter" ng-model="filterComments" />
+            </div>
+            <!-- end of Filter Messages -->
+
+            <!-- chat-comments -->
+            <div class="chat-comments" ng-repeat="comment in comments | filter:filterComments ">
+                <div class="wrap chat-comments">
+                    <img src="http://www.gravatar.com/avatar/{{ comment.hash }}?s=50" />
+                </div>
+				<div class="chat-message">
+                <div class="cell email"><span ng-bind="comment.email"/> </div>
+                <div class="cell message"><span ng-bind="comment.message"/> {{ comment.date }}</div>
+				</div>
+            </div>
+        </div>
+        <!-- end of chat-comments -->
+    </div>
+    <!--end of comments-section -->
+    </div>
+    <!-- end of container -->
+</body>
+
+</html>
